@@ -46,7 +46,8 @@ class Auth extends ShieldAuth
      * --------------------------------------------------------------------
      */
     public array $views = [
-        'login'                       => '\CodeIgniter\Shield\Views\login',
+        // 'login'                       => '\CodeIgniter\Shield\Views\login',
+        'login'                       => 'App\Views\Shield\login',
         'register'                    => '\CodeIgniter\Shield\Views\register',
         'layout'                      => '\CodeIgniter\Shield\Views\layout',
         'action_email_2fa'            => '\CodeIgniter\Shield\Views\email_2fa_show',
@@ -153,7 +154,7 @@ class Auth extends ShieldAuth
      * --------------------------------------------------------------------
      * Determines whether users can register for the site.
      */
-    public bool $allowRegistration = true;
+    public bool $allowRegistration = false;
 
     /**
      * --------------------------------------------------------------------
@@ -204,7 +205,7 @@ class Auth extends ShieldAuth
      */
     public array $sessionConfig = [
         'field'              => 'user',
-        'allowRemembering'   => true,
+        'allowRemembering'   => false,
         'rememberCookieName' => 'remember',
         'rememberLength'     => 30 * DAY,
     ];
@@ -280,7 +281,7 @@ class Auth extends ShieldAuth
      * Fields that are available to be used as credentials for login.
      */
     public array $validFields = [
-        'email',
+        // 'email',
         'username',
     ];
 

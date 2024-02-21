@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use App\Entities\MenusEntity;
 use CodeIgniter\Model;
 
 class MenusModel extends Model
 {
     protected $table            = 'menus';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'menuid';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = MenusEntity::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['menuname','parentid','status'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -29,14 +30,4 @@ class MenusModel extends Model
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
 }

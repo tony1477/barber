@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use App\Entities\CategoriesEntity;
 use CodeIgniter\Model;
 
-class CategoryModel extends Model
+class CategoriesModel extends Model
 {
     protected $table            = 'categories';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'categoryid';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = CategoriesEntity::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['categoryname','price','status'];
 
     protected bool $allowEmptyInserts = false;
 
@@ -29,14 +30,4 @@ class CategoryModel extends Model
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
-    // Callbacks
-    protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
-    protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
-    protected $afterUpdate    = [];
-    protected $beforeFind     = [];
-    protected $afterFind      = [];
-    protected $beforeDelete   = [];
-    protected $afterDelete    = [];
 }

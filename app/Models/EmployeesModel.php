@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use App\Entities\CustomersEntity;
+use App\Entities\EmployeesEntity;
 use CodeIgniter\Model;
 
-class CustomersModel extends Model
+class EmployeeModel extends Model
 {
-    protected $table            = 'customers';
-    protected $primaryKey       = 'customerid';
+    protected $table            = 'employees';
+    protected $primaryKey       = 'employeeid';
     protected $useAutoIncrement = true;
-    protected $returnType       = CustomersEntity::class;
+    protected $returnType       = EmployeesEntity::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['fullname','address','status_customer','mobile_phone','status'];
+    protected $allowedFields    = ['fullname','ktpno','address','photo','birthdate','status'];
 
     protected bool $allowEmptyInserts = false;
 
