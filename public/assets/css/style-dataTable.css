@@ -1,0 +1,7 @@
+.page-item.active .page-link {
+    color: #fff;
+}
+
+.dt-buttons.btn-group {
+    column-gap: 2px;
+}

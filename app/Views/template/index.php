@@ -20,9 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="<?=base_url()?>assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="<?=base_url()?>assets/img/favicon.png">
-  <title>
-    Material Dashboard 2 by Creative Tim
-  </title>
+  <title><?=SITE_TITLE?> : <?=$title?></title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
@@ -34,6 +32,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <!-- CSS Files -->
   <link id="pagestyle" href="<?=base_url()?>/assets/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+  <link href="<?=base_url()?>assets/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+  <link href="<?=base_url()?>assets/css/buttons.bootstrap5.min.css" rel="stylesheet" />
+  <link href="<?=base_url()?>assets/css/style-dataTable.css" rel="stylesheet" />
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <!-- <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script> -->
@@ -45,113 +46,11 @@
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/material-dashboard/pages/dashboard " target="_blank">
         <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold text-white">Material Dashboard 2</span>
+        <span class="ms-1 font-weight-bold text-white"><?=SITE_TITLE?></span>
       </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/dashboard.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">dashboard</i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a data-bs-toggle="collapse" class="nav-link text-white collapsed" href="#test" aria-controls="test" aria-expanded="false">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Tables</span>
-          </a>
-          <div class="collapse" id="test">
-            <ul class="nav">
-              <li class="nav-item ">
-                <a class="nav-link text-white " href="../../pages/applications/crm.html">
-                    <span class="sidenav-mini-icon"> C </span>
-                    <span class="sidenav-normal  ms-2  ps-1"> CRM </span>
-                </a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link text-white " href="../../pages/applications/crm.html">
-                    <span class="sidenav-mini-icon"> C </span>
-                    <span class="sidenav-normal  ms-2  ps-1"> CRM </span>
-                </a>
-              </li>
-            </ul>
-          </div>  
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/tables.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Tables</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/billing.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">receipt_long</i>
-            </div>
-            <span class="nav-link-text ms-1">Billing</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/virtual-reality.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">view_in_ar</i>
-            </div>
-            <span class="nav-link-text ms-1">Virtual Reality</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/rtl.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
-            </div>
-            <span class="nav-link-text ms-1">RTL</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/notifications.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">notifications</i>
-            </div>
-            <span class="nav-link-text ms-1">Notifications</span>
-          </a>
-        </li>
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/profile.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">person</i>
-            </div>
-            <span class="nav-link-text ms-1">Profile</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/sign-in.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">login</i>
-            </div>
-            <span class="nav-link-text ms-1">Sign In</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white " href="../pages/sign-up.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="material-icons opacity-10">assignment</i>
-            </div>
-            <span class="nav-link-text ms-1">Sign Up</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <?=view('template/nav',$menu)?>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
         <a class="btn btn-outline-primary mt-4 w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-dashboard?ref=sidebarfree" type="button">Documentation</a>
@@ -163,14 +62,15 @@
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
       <div class="container-fluid py-1 px-3">
-        <nav aria-label="breadcrumb">
+        <?= $this->renderSection('breadcrumb')?>
+        <!-- <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
             <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Template</li>
           </ol>
           <h6 class="font-weight-bolder mb-0">Template</h6>
-        </nav>
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+        </nav> -->
+        <!--<div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <!-- <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group input-group-outline">
               <label class="form-label">Type here...</label>
@@ -278,46 +178,25 @@
               </a>
             </li>
           </ul> -->
-        </div>
+        <!--</div>-->
       </div>
     </nav>
     <!-- End Navbar -->
-    <div class="container-fluid py-4">
-      <footer class="footer py-4  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © 2024,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                for a better web.
-              </div>
-            </div>
-            <!-- <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
-            </div> -->
-          </div>
-        </div>
-      </footer>
-    </div>
+   <?=$this->renderSection('content')?>
   </main>
   <!--   Core JS Files   -->
+  <script src="<?=base_url()?>assets/js/core/jquery.min.js"></script>
   <script src="<?=base_url()?>assets/js/core/popper.min.js"></script>
   <script src="<?=base_url()?>assets/js/core/bootstrap.min.js"></script>
+  <script src="<?=base_url()?>assets/js/plugins/dataTables.min.js"></script>
+  <script src="<?=base_url()?>assets/js/plugins/dataTables.bootstrap5.min.js"></script>
+  <script src="<?=base_url()?>assets/js/plugins/dataTables.buttons.min.js"></script>
+  <script src="<?=base_url()?>assets/js/plugins/buttons.bootstrap5.min.js"></script>
+  <!-- <script src="<?=base_url()?>assets/js/plugins/buttons.colVis.min.js"></script> -->
+  <script src="<?=base_url()?>assets/js/plugins/buttons.html5.min.js"></script>
+  <!-- <script src="<?=base_url()?>assets/js/plugins/buttons.print.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
   <script src="<?=base_url()?>assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="<?=base_url()?>assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
@@ -333,6 +212,7 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/material-dashboard.min.js?v=3.1.0"></script>
+  <?=$this->renderSection('script')?>
 </body>
 
 </html>
