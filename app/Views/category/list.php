@@ -23,6 +23,12 @@
 <script>
     $(document).ready( function () {
         var table = $('#myTable').DataTable({
+            columnDefs: [
+            {
+                target: 0,
+                visible: false,
+                searchable: false
+            }],
             buttons: [ {
                 text: 'Add',
                 action: function ( e, dt, node, config ) {
@@ -36,12 +42,32 @@
                  "<'row py-3'<'col-sm-12 col-md-5 ps-3'i><'col-sm-12 col-md-7 'p>>",
           // dom:'Bfrtip'
         });
+
+        $(document).on('click','#myTable tbody td.editBtn',  function(e) {
+            let row = table.row(this).data()
+            let id = row[0]
+            console.log(id)
+        
+        })
+        
+        $(document).on('click','#myTable tbody td.delBtn',  function(e) {
+            let row = table.row(this).data()
+            let id = row[0]
+            // console.log(id)
+            let btn = document.querySelector('.deletecategory')
+            btn.addEventListener('click', function(e) {
+                deleteData('<?=base_url()?>/kategori/hapus',{'id':id})
+                // .then(resp => resp.json())
+                .then(data => {
+                    if(data.status == 'success') {
+                        
+                    }
+                })
+            })    
+        
+        })
     });
 
-    let btn = document.querySelector('.deletecategory')
-    btn.addEventListener('click', function(e) {
-        console.log(e)
-    })
 </script>
 <?=$this->endSection()?>
 

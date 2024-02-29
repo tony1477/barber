@@ -207,6 +207,21 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
+
+    async function deleteData(url='',data={}) {
+        const response = await fetch(url, {
+            method:'POST',
+            mode:'cors',
+            cache:'no-cache',
+            creadentials:'same-origin',
+            headers: {
+                'Content-Type':'application/json',
+                "X-Requested-With": "XMLHttpRequest"
+            },
+            body: JSON.stringify(data)
+        })        
+        return response.json()
+    }
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>

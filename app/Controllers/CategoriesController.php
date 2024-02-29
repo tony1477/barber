@@ -30,7 +30,7 @@ class CategoriesController extends BaseController
             'tableProps' => [
                 'tableTitle' => 'List Category',
                 'columns' => [
-                    'Category Name','Price', 'Status'
+                    'ID','Category Name','Price', 'Status'
                 ],
                 'data' => $this->model->asArray()->findAll(),
                 'confirmDelete' => 'category'
@@ -80,14 +80,22 @@ class CategoriesController extends BaseController
         }
     }
 
-    public function delete() :void
+    public function delete() 
     {
         try {
-            $id = $_POST['id'];
+            $id = $this->request->getVar('id');
             $this->model->delete($id);
+            return json_encode([
+                'status' => 'success'
+            ]);
+            // var_dump($this->request->getVar('id'));
         }
         catch(\Exception $e) {
             $msg = $e->getMessage();
+            return json_encode([
+                'status' => 'fail',
+                'message' => $msg
+            ]);
         }
     }
 }

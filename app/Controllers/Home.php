@@ -26,7 +26,8 @@ class Home extends BaseController
         //$menu = $this->menu->whereIn()->findAll();
         $menu = Menus::getMenus($user);
         $data = [
-            'menu' => $menu
+            'menu' => $menu,
+            'title' => 'HOME'
         ];
         return view('template/index',$data);
     }

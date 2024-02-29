@@ -13,7 +13,7 @@
                 <?php foreach($columns as $col):?>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"><?=$col?></th>
                 <?php endforeach?>
-                <th class="text-secondary opacity-7">Action</th>
+                <th class="text-secondary opacity-7" colspan="2">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -78,6 +78,7 @@
             <?php //endfor?>
             <?php foreach($data as $row):?>
             <tr>
+                <td><?=$row['categoryid']?></td>
                 <td>
                     <p class="ps-3 font-weight-normal mb-0"><?=$row['categoryname']?></p>
                 </td>
@@ -88,16 +89,17 @@
                     <span class="badge bg-gradient-<?=$row['status']=='1' ? 'success' : 'danger'?>"><?=$row['status'] == '1' ? 'Active' : 'Not Active'?></span>
                     <!-- <span class="badge badge-sm rounded-pill text-success"><?=$row['status']?></span> -->
                 </td>
-                <td class="align-middle">
-                <button class="btn btn-sm btn-icon btn-3 btn-info" type="button">
-                    <span class="btn-inner--icon"><i class="material-icons">edit</i></span>
-                    <span class="btn-inner--text">Edit </span>
-                </button>
-
-                <button class="btn btn-sm btn-icon btn-3 btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#modal<?=$confirmDelete?>Confirm">
-                    <span class="btn-inner--icon"><i class="material-icons">delete</i></span>
-                    <span class="btn-inner--text">Delete </span>
-                </button>
+                <td class="align-middle editBtn">
+                    <button class="btn btn-sm btn-icon btn-3 btn-info" type="button">
+                        <span class="btn-inner--icon"><i class="material-icons">edit</i></span>
+                        <span class="btn-inner--text">Edit </span>
+                    </button>
+                </td>
+                <td class="align-middle delBtn">
+                    <button class="btn btn-sm btn-icon btn-3 btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#modal<?=$confirmDelete?>Confirm">
+                        <span class="btn-inner--icon"><i class="material-icons">delete</i></span>
+                        <span class="btn-inner--text">Delete </span>
+                    </button>
                 </td>
             </tr>
             <?php endforeach?>
