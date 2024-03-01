@@ -2,7 +2,7 @@
 <?=$this->section('breadcrumb')?>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Category</a></li>
+        <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Employee</a></li>
         <li class="breadcrumb-item text-sm text-dark active" aria-current="page">List</li>
         </ol>
         <h6 class="font-weight-bolder mb-0">List</h6>
@@ -33,9 +33,9 @@
                 text: 'Add',
                 action: function ( e, dt, node, config ) {
                     // console.log(e,dt,node,config)
-                    const frm = document.querySelector('#frmcategory')
+                    const frm = document.querySelector('#frmemployee')
                     frm.reset()
-                    $('#modalcategory').modal('show')
+                    $('#modalemployee').modal('show')
                 }
             },'copy','excel','pdf'],
             dom: "<'row'<'col-sm-12 col-md-6 pt-2 ps-3'B>>" +
@@ -47,21 +47,24 @@
 
         $(document).on('click','#myTable tbody td.editBtn',  function(e) {
             let row = table.row(this).data()
-            let id, nama, harga,status
-            [id, nama, harga, status ] = row
+            let [id, nama, ktpno, alamat, tanggal, status ] = row
             //   let namaValue = table.cell(this, 1).data();
             let idx = $(id).text()
-            let catname = $(nama).text()
-            let price = $(harga).text()
+            let fullname = $(nama).text()
+            let ktpnumber = $(ktpno).text()
+            let address = $(alamat).text()
+            let birthdate = $(tanggal).text()
             
             const isFill = document.querySelectorAll('.input-group')
             isFill.forEach(el => {
                 el.classList.add('is-filled')
             })
-            $('#modalcategory').modal('show')
+            $('#modalemployee').modal('show')
             $('input[name="id"]').val(idx)
-            $('input[name="categoryname"]').val(catname)
-            $('input[name="price"]').val(price)
+            $('input[name="fullname"]').val(fullname)
+            $('input[name="ktpno"]').val(ktpnumber)
+            $('input[name="address"]').val(address)
+            $('input[name="birthdate"]').val(birthdate)
         
         })
         
@@ -70,7 +73,7 @@
             let id = row[0]
             let idx = $(id).text()
             // console.log(id)
-            let btn = document.querySelector('.deletecategory')
+            let btn = document.querySelector('.deleteemployee')
             btn.addEventListener('click', function(e) {
                 deleteData('<?=base_url()?>/kategori/hapus',{'id':idx})
                 // .then(resp => resp.json())

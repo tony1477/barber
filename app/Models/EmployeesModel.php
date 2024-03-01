@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Entities\EmployeesEntity;
 use CodeIgniter\Model;
 
-class EmployeeModel extends Model
+class EmployeesModel extends Model
 {
     protected $table            = 'employees';
     protected $primaryKey       = 'employeeid';

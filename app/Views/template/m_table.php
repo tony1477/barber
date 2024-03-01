@@ -7,6 +7,19 @@
     </div>
     <div class="card">
         <div class="table-responsive">
+            <div class="row justify-content-center py-3">
+                <?php if(session()->has('message')):?>
+                <div class="alert alert-info alert-dismissible text-white fade show w-25" role="alert">
+                    <span class="alert-icon align-middle">
+                        <span class="material-icons text-md">done</span>
+                    </span>
+                    <span class="alert-text"><strong>Done!</strong> <?=session('message')?></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <?php endif?>
+            </div>
         <table class="table align-items-center mb-0" id="myTable">
             <thead>
             <tr>
@@ -17,7 +30,6 @@
             </tr>
             </thead>
             <tbody>
-            <?php //for($i=0; $i<=10; $i++):?>
             <!-- <tr>
                 <td>
                 <div class="d-flex px-2 py-1">
@@ -75,21 +87,25 @@
                 </a>
                 </td>
             </tr> -->
-            <?php //endfor?>
-            <?php foreach($data as $row):?>
+            <?php $length = count($field);
+            foreach($data as $key => $row):?>
             <tr>
-                <td><?=$row['categoryid']?></td>
-                <td>
-                    <p class="ps-3 font-weight-normal mb-0"><?=$row['categoryname']?></p>
-                </td>
-                <td>
-                    <p class="font-weight-normal mb-0"><?=$row['price']?></p>
-                </td>
-                <td class="align-middle text-center text-sm">
-                    <span class="badge bg-gradient-<?=$row['status']=='1' ? 'success' : 'danger'?>"><?=$row['status'] == '1' ? 'Active' : 'Not Active'?></span>
-                    <!-- <span class="badge badge-sm rounded-pill text-success"><?=$row['status']?></span> -->
-                </td>
-                <td class="align-middle editBtn">
+                <?php for($i=0; $i<$length; $i++):?>
+                    <?php 
+                    switch($field[$i]) {
+                        case 'status':
+                        $td = sprintf('<td class="align-middle text-center text-sm">
+                            <span class="badge bg-gradient-'.($row['status']=='1' ? 'success' : 'danger').'">'.($row['status'] == '1' ? 'Active' : 'Not Active').'</span></td>');
+                        break;
+
+                        default:
+                        $td = sprintf('<td><p class="ps-3 font-weight-normal mb-0">'.$row[$field[$i]].'</p></td>');
+                    }
+                    ?>
+                    <!-- <td><?php //$row[$field[$i]]?></td> -->
+                    <?=$td?>
+                <?php endfor?>
+                 <td class="align-middle editBtn">
                     <button class="btn btn-sm btn-icon btn-3 btn-info" type="button">
                         <span class="btn-inner--icon"><i class="material-icons">edit</i></span>
                         <span class="btn-inner--text">Edit </span>

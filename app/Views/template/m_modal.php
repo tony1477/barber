@@ -7,8 +7,9 @@
             <span aria-hidden="true">×</span>
         </button>
         </div>
-        <form action="<?=$action?>" method="post" enctype="multipart/form-data">
+        <form action="<?=$action?>" id="frm<?=$idModal?>" method="post" enctype="multipart/form-data">
         <div class="modal-body">
+            <input type="text" name="id" value="" style="display: none;">
             <?php foreach($colModal as $field):?>
             <?php switch ($field['type']) {
                 case 'switch':
@@ -17,7 +18,12 @@
                     <label class="form-check-label" for="flexSwitch'.$field['name'].'">'.$field['label'].'</label>
                     </div>';
                     break;
-                
+                // case 'date':
+                //   $input = '<div class="input-group input-group-outline focused is-focused my-3">
+                //     <label class="form-label">'.$field['label'].'</label>
+                //     <input type="'.$field['type'].'" class="form-control" value="" name="'.$field['name'].'">
+                //     </div>';
+                //     break;
                 default:
                     $input = '<div class="input-group input-group-outline my-3">
                     <label class="form-label">'.$field['label'].'</label>

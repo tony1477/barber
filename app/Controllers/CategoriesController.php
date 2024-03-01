@@ -32,12 +32,13 @@ class CategoriesController extends BaseController
                 'columns' => [
                     'ID','Category Name','Price', 'Status'
                 ],
+                'field' => ['categoryid','categoryname','price','status'],
                 'data' => $this->model->asArray()->findAll(),
                 'confirmDelete' => 'category'
             ],
             'fieldColumns' => [
                 'idModal' => 'category',
-                'action' => 'kategori/simpan',
+                'action' => base_url().'kategori/simpan',
                 'colModal' => [
                     [
                         'label'=>'Category Name',
@@ -61,26 +62,31 @@ class CategoriesController extends BaseController
         return view('category/list',$data);
     }
 
-    public function post()
+    public function post() 
     {
         try {
             $categoryname = $_POST['categoryname']; 
             $price = $_POST['price'];
-            $status = $_POST['status']; 
+            $status = $_POST['status'];
             $data = [
                 'categoryname' => $categoryname,
                 'price' => $price,
                 'status' => ($status == 'on' ? 1 : 0)
             ];
-            if($this->model->save($data)) return redirect()->to('kategori');
-            return redirect()->to('kategori');
+            $message = 'Berhasil di tambahkan';
+            if($_POST['id']!='') {
+                $data['categoryid'] = $_POST['id'];
+                $message = 'Berhasil di update';
+            }
+            if($this->model->save($data)) return redirect()->to('kategori')->with('message',$message);
         }
         catch(\Exception $e) {
             $msg = $e->getMessage();
+            return redirect()->to('kategori')->with('message',$msg);
         }
     }
 
-    public function delete() 
+    public function delete() :string
     {
         try {
             $id = $this->request->getVar('id');
@@ -88,7 +94,6 @@ class CategoriesController extends BaseController
             return json_encode([
                 'status' => 'success'
             ]);
-            // var_dump($this->request->getVar('id'));
         }
         catch(\Exception $e) {
             $msg = $e->getMessage();
