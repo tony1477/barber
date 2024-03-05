@@ -88,4 +88,12 @@ class TransactionsController extends BaseController
     {
 
     }
+
+    public function getDetail(int $id) {
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Data retrived',
+            'data' => $this->model->getDetailTrans($id)->getResultArray(),
+        ]);
+    }
 }

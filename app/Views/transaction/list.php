@@ -42,7 +42,7 @@
                  "<'row'<'col-sm-12 col-md-6 ps-3'l><'col-sm-12 col-md-6'f>>" +
                  "<'row'<'col-sm-12'tr>>" +
                  "<'row py-3'<'col-sm-12 col-md-5 ps-3'i><'col-sm-12 col-md-7 'p>>",
-          // dom:'Bfrtip'
+          // dom:'Bfrtip',
         });
 
         $(document).on('click','#myTable tbody td.editBtn',  function(e) {
@@ -86,6 +86,84 @@
             })    
         
         })
+
+        $(document).off('click','#myTable tbody td.detailBtn').on('click','#myTable tbody td.detailBtn', async function(e) {
+
+            const table = $(this).closest('table').DataTable();
+            const tr = $(this).closest('tr');
+            const row = table.row(tr);
+            // const data = row.data()
+
+            let [id] = row.data()
+            let idx = $(id).text()
+            
+            if (row.child.isShown()) {
+                table.rows().every(function () {
+                    this.child.hide()
+                })
+            } else {
+                table.rows().every(function() {
+                    this.child.hide();
+                })
+
+                // let fullname = data.fullname.replace(/\s+/g, '-').toLowerCase();
+
+                const res = await fetchContent(idx);
+
+                let detailHtml = `<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">`;
+
+                res.forEach(item => {
+                    detailHtml += `<tr>
+                        <td>${item.qty}X ${item.categoryname}</td>
+                        <td>Rp. ${item.price}</td>
+                        <td>Sub Total = Rp ${item.sub_total}</td>
+                        </tr>`
+                })
+                detailHtml += '</table>'
+                
+                await row.child(detailHtml).show()
+                // fetch(`../employee/point/${monthlyid}/detail`,{
+                //     method: 'GET',
+                //     mode: 'cors',
+                //     cache: 'no-cache',
+                //     headers: {
+                //         'Content-Type' : 'application/json',
+                //         'X-Requested-With': 'XMLHttpRequest'
+                //     },
+                // })
+                // .then(response => response.json())
+                // .then(data => {                    
+                //     console.log(data)
+                    
+                //     row.child(detailHtml).show();  
+                // })
+            }
+            // let idx = $(id).text()
+            // let btn = document.querySelector('.deletetransaction')
+            // btn.addEventListener('click', function(e) {
+            //     deleteData('<?=base_url()?>/pelanggan/hapus',{'id':idx})
+            //     // .then(resp => resp.json())
+            //     .then(data => {
+            //         if(data.status == 'success') {
+            //             location.reload()
+            //         }
+            //     })
+            // })    
+        
+        })
+
+        async function fetchContent(id) {
+            try {
+                const url = `<?=base_url()?>/transaksi/${id}`
+                const response = await fetch(url)
+                const data = await response.json()
+                if(data.status == 'success') {
+                    return data.data
+                }
+            } catch(error) {
+                alert('Error fetching Data :',error)
+            }
+        }
     });
 
 </script>
