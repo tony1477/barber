@@ -18,4 +18,6 @@ $routes->get('/karyawan','EmployeesController::list');
 $routes->post('/karyawan/simpan','EmployeesController::post');
 $routes->post('/karyawan/hapus','EmployeesController::delete');
 
+$routes->get('/transaksi','TransactionsController::list');
+
 service('auth')->routes($routes);

@@ -30,8 +30,17 @@ class TransactionsController extends BaseController
                 'columns' => [
                     'ID','Date','Time', 'Customer', 'Barberman', 'Price'
                 ],
-                'field' => ['transid','transdate','transtime','customerid','barberid'],
-                'data' => $this->model->asArray()->findAll(),
+                'additionalCol' => [
+                    'detail' => 
+                        '<td class="align-middle text-center detailBtn">
+                        <button class="btn btn-sm btn-icon badge btn-primary" type="button">
+                            <span class="btn-inner--icon"><i class="material-icons">info</i></span>
+                            <span class="btn-inner--text">Detail</span>
+                        </button>
+                    </td>'
+                ],
+                'field' => ['transid','transdate','transtime','customername','barberman','price'],
+                'data' => $this->model->getData()->getResultArray(),
                 'confirmDelete' => 'transaction'
             ],
             'fieldColumns' => [

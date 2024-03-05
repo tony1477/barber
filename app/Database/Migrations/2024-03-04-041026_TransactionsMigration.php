@@ -8,7 +8,7 @@ class TransactionsMigration extends Migration
 {
     public function up()
     {
-         $this->forge->addField([
+        $this->forge->addField([
             'transid' => [
                 'type'           => 'INT',
                 'constraint'     => 10,
