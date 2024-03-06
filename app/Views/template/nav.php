@@ -3,7 +3,7 @@
         <?php foreach($menu as $row):?>
         <?php if($row->parentid == ''):?>
         <li class="nav-item">
-          <a class="nav-link text-white " href="<?=$row->url?>">
+          <a class="nav-link text-white <?=($active == $row->url ? ' active bg-gradient-primary' : '')?> " href="<?=base_url().$row->url?>">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
               <i class="material-icons opacity-10"><?=$row->icon?></i>
             </div>
@@ -11,6 +11,7 @@
           </a>
         </li>
         <?php endif?>
+        <?php endforeach?>
         <!-- <li class="nav-item">
           <a class="nav-link text-white " href="../pages/dashboard.html">
             <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -44,6 +45,5 @@
           </div>  
         </li>
          -->
-        <?php endforeach?>
       </ul>
     </div>

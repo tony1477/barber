@@ -25,6 +25,7 @@ class TransactionsController extends BaseController
         $data = [
             'title' => 'List Transaction',
             'menu' => Menus::getMenus('admin'),
+            'active' => '/transaksi',
             'tableProps' => [
                 'tableTitle' => 'List Transaction',
                 'columns' => [

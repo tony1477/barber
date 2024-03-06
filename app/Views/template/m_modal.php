@@ -24,6 +24,12 @@
                 //     <input type="'.$field['type'].'" class="form-control" value="" name="'.$field['name'].'">
                 //     </div>';
                 //     break;
+                case 'file':
+                  $input = '<div class="input-group input-group-outline my-3">
+                    <label class="form-label">'.$field['label'].'</label>
+                    <input type="'.$field['type'].'" class="form-control" value="" name="'.$field['name'].'">
+                    </div>';
+                    break;
                 default:
                     $input = '<div class="input-group input-group-outline my-3">
                     <label class="form-label">'.$field['label'].'</label>

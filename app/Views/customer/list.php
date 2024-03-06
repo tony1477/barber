@@ -48,11 +48,12 @@
         $(document).on('click','#myTable tbody td.editBtn',  function(e) {
             let row = table.row(this).data()
             // let id, nama, harga,status
-            let [id, nama, alamat, stat, hp ] = row
+            let [id, nama, alamat, foto, stat, hp ] = row
             //   let namaValue = table.cell(this, 1).data();
             let idx = $(id).text()
             let fullname = $(nama).text()
             let address = $(alamat).text()
+            let photo = $(foto).text()
             let status = $(stat).text()
             let phone = $(hp).text()
             
@@ -64,6 +65,7 @@
             $('input[name="id"]').val(idx)
             $('input[name="fullname"]').val(fullname)
             $('input[name="address"]').val(address)
+            // $('input[name="photo"]').val(photo)
             $('input[name="status"]').val(status)
             $('input[name="phone"]').val(phone)
         

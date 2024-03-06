@@ -26,6 +26,7 @@ class EmployeesController extends BaseController
         $data = [
             'title' => 'List Employee',
             'menu' => Menus::getMenus('admin'),
+            'active' => '/karyawan',
             'tableProps' => [
                 'tableTitle' => 'List Employee',
                 'columns' => [

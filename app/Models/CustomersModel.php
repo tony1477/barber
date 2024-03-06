@@ -13,7 +13,7 @@ class CustomersModel extends Model
     protected $returnType       = CustomersEntity::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['fullname','address','status_customer','mobile_phone','status'];
+    protected $allowedFields    = ['fullname','address','photo','status_customer','mobile_phone','status'];
 
     protected bool $allowEmptyInserts = false;
 

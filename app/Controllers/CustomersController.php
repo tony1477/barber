@@ -5,6 +5,9 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\CustomersModel;
 use App\Services\Menus;
+use CodeIgniter\Files\File;
+use CodeIgniter\HTTP\Files\UploadedFile;
+
 
 class CustomersController extends BaseController
 {
@@ -24,13 +27,14 @@ class CustomersController extends BaseController
     {
         $data = [
             'title' => 'List Customer',
+            'active' => '/pelanggan',
             'menu' => Menus::getMenus('admin'),
             'tableProps' => [
                 'tableTitle' => 'List Customer',
                 'columns' => [
-                    'ID','Fullname','Address', 'Status' , 'Phone', 'Active?'
+                    'ID','Fullname','Address', 'Photo','Status' , 'Phone', 'Active?'
                 ],
-                'field' => ['customerid','fullname','address','status_customer','mobile_phone','status'],
+                'field' => ['customerid','fullname','address','photo','status_customer','mobile_phone','status'],
                 'data' => $this->model->asArray()->findAll(),
                 'confirmDelete' => 'customer'
             ],
@@ -47,6 +51,11 @@ class CustomersController extends BaseController
                         'label'=>'Address',
                         'name'=>'address',
                         'type' => 'text',
+                    ],
+                    [
+                        'label'=>'Photo',
+                        'name'=>'photo',
+                        'type' => 'file',
                     ],
                     [
                         'label'=>'Status',
@@ -97,10 +106,15 @@ class CustomersController extends BaseController
             $address = $_POST['address'];
             $status = $_POST['status'];
             $phone = $_POST['phone'];
+            $photo = $_FILES['photo'];
             $isactive = $_POST['isactive'];
+
+            $img = $this->request->getFile('photo');
+            $uploaded = $this->uploadImg($img);
             $data = [
                 'fullname' => $fullname,
                 'address' => $address,
+                'photo' => $uploaded['uploaded_filename'],
                 'status_customer' => $status,
                 'mobile_phone' => $phone,
                 'status' => ($isactive == 'on' ? 1 : 0),
@@ -111,6 +125,7 @@ class CustomersController extends BaseController
                 $message = 'Berhasil di update';
             }
             if($this->model->save($data)) return redirect()->to('pelanggan')->with('message',$message);
+            // var_dump($data);
         }
         catch(\Exception $e) {
             $msg = $e->getMessage();
@@ -134,5 +149,32 @@ class CustomersController extends BaseController
                 'message' => $msg
             ]);
         }
+    }
+
+    private function uploadImg($files)
+    {
+
+        if (! $files->hasMoved()) {
+            $filepath = WRITEPATH . 'uploads/' . $files->store();
+            $filename = basename($filepath);
+
+            // Path folder public
+            $publicFolder = FCPATH . 'public/uploads/';
+
+            // Memindahkan file ke folder public
+            rename($filepath,$publicFolder.$filename);
+            // $files->move($publicFolder, $filename);
+            // move_uploaded_file()
+
+            $data = [
+                'uploaded_fileinfo' => new File($filepath),
+                'uploaded_filename' => $filename
+            ];
+        }
+
+        // $data = ['errors' => 'The file has already been moved.'];
+
+        // return view('upload_form', $data);
+        return $data;
     }
 }

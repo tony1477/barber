@@ -27,6 +27,7 @@ class CategoriesController extends BaseController
         $data = [
             'title' => 'List Category',
             'menu' => Menus::getMenus('admin'),
+            'active' => '/kategori',
             'tableProps' => [
                 'tableTitle' => 'List Category',
                 'columns' => [
