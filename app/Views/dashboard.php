@@ -25,6 +25,7 @@
                             <h4 class="mb-0"><?=$data['today_amount']?></h4>
                         </div>
                     </div>
+                    <?php //var_dump(auth()->user()->getGroups())?>
                     <hr class="dark horizontal my-0" />
                     <div class="card-footer p-3">
                         <p class="mb-0">

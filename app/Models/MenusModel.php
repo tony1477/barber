@@ -30,4 +30,16 @@ class MenusModel extends Model
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
+    public function getMenubyUserId($id)
+    {
+        return $this->db->table('menus a')
+            ->select('a.*, ')
+            ->join('group_menu b','b.menuid = a.menuid','left')
+            ->join('auth_groups_users c','c.id = b.groupid','left')
+            ->where('a.status',1)
+            ->where('c.user_id',$id)
+            ->get()
+            ->getResult();
+    }
+
 }

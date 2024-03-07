@@ -114,16 +114,20 @@
                             <?=$value?>
                     <?php endforeach; endif?>
                     <td class="align-middle editBtn text-end">
+                    <?php if (auth()->user()->can('admin.access') || uri_string()=='pelanggan') :?>
                         <button class="btn btn-sm btn-icon badge btn-info" type="button">
                             <span class="btn-inner--icon"><i class="material-icons">edit</i></span>
                             <span class="btn-inner--text">Edit </span>
                         </button>
+                        <?php endif?>
                     </td>
                     <td class="align-middle delBtn">
+                        <?php if (auth()->user()->can('admin.access' ) || uri_string()=='pelanggan') :?>
                         <button class="btn btn-sm btn-icon badge btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#modal<?=$confirmDelete?>Confirm">
                             <span class="btn-inner--icon"><i class="material-icons">delete</i></span>
                             <span class="btn-inner--text">Delete </span>
                         </button>
+                        <?php endif?>
                     </td>
                 </tr>
                 <?php endforeach?>

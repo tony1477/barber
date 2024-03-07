@@ -8,13 +8,14 @@ class Menus {
     
     public static $menus;
 
-    private static function getAllMenus() :void {
+    private static function getAllMenus(int $id) :void {
         $model = new MenusModel();
-        self::$menus = $model->where('status',1)->findAll();
+        self::$menus = $model->getMenubyUserId($id);
+        // self::$menus = $model->where('status',1)->findAll();
     }
 
-    public static function getMenus(string $user) {
-        $menu = self::getAllMenus();
+    public static function getMenus(int $id) {
+        self::getAllMenus($id);
         return self::$menus;
         // $model = new MenusModel();
         // return $model->findAll();

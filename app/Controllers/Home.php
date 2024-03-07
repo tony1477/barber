@@ -11,11 +11,15 @@ class Home extends BaseController
 {
     private MenusModel $menu;
     private TransactionsModel $transaction;
-
+    public $users;
     public function __construct()
     {
         $this->menu = new MenusModel();
         $this->transaction = new TransactionsModel();
+
+        // $user = auth()->user(); 
+        $this->users = auth()->user();
+        
     }
 
     public function index(): string
@@ -40,6 +44,7 @@ class Home extends BaseController
     {
         $data=[
             'title' => 'Dashboard',
+            'user' => $this->users,
             'data' => [
                 // 'today_amount' => 'Rp. 525.000',
                 'today_amount' => $this->transaction->getTodayAmount()['total'],
@@ -79,7 +84,7 @@ class Home extends BaseController
                 // ],
             ],
             'active' => '/dashboard',
-            'menu' => Menus::getMenus('admin'),
+            'menu' => Menus::getMenus(auth()->id()),
         ];
         return view('dashboard',$data);
     }

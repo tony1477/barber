@@ -49,9 +49,7 @@
                 text: 'Add',
                 action: function ( e, dt, node, config ) {
                     // console.log(e,dt,node,config)
-                    const frm = document.querySelector('#frmtransaction')
-                    frm.reset()
-                    $('#modaltransaction').modal('show')
+                    window.location.href = '<?=base_url()?>transaksi/tambah'
                 }
             },'copy','excel','pdf'],
             dom: "<'row'<'col-sm-12 col-md-6 pt-2 ps-3'B>>" +
@@ -184,4 +182,3 @@
 
 </script>
 <?=$this->endSection()?>
-

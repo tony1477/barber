@@ -83,8 +83,9 @@ class AuthGroups extends ShieldAuthGroups
         'users.edit'          => 'Can edit existing non-admin users',
         'users.delete'        => 'Can delete existing non-admin users',
         'beta.access'         => 'Can access beta-level features',
-        'cashier.create'      => 'Can create invoice',
-        // 'cashier.edit'        => 
+        'cashier.customer'    => 'Can access customer',
+        'cashier.addtrans'    => 'Onyl can add transaction',
+        'cashier.trans'         => 'Can access Transaction'
     ];
 
     /**
@@ -107,6 +108,9 @@ class AuthGroups extends ShieldAuthGroups
             'users.edit',
             'users.delete',
             'beta.access',
+            'cashier.customer',
+            'cashier.addtrans',
+            'cashier.trans'
         ],
         'developer' => [
             'admin.access',
@@ -120,7 +124,8 @@ class AuthGroups extends ShieldAuthGroups
             'beta.access',
         ],
         'cashier' => [
-            'cashier.create'
+            'cashier.customer',
+            'cashier.addtrans'
         ]
     ];
 }

@@ -28,13 +28,23 @@ class CustomersController extends BaseController
         $data = [
             'title' => 'List Customer',
             'active' => '/pelanggan',
-            'menu' => Menus::getMenus('admin'),
+            'menu' => Menus::getMenus(auth()->id()),
             'tableProps' => [
                 'tableTitle' => 'List Customer',
                 'columns' => [
-                    'ID','Fullname','Address', 'Photo','Status' , 'Phone', 'Active?'
+                    'ID','Fullname','Address', 'Status' , 'Phone', 'Active?'
                 ],
-                'field' => ['customerid','fullname','address','photo','status_customer','mobile_phone','status'],
+                // 'additionalCol' => [
+                //     'photo' => 
+                //         '<td>
+                //             <div class="avatar mt-2">
+                //                 <a href="javascript:;" class="avatar avatar rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="" data-bs-original-title="">
+                //                     <img src="#" alt="team1">
+                //                 </a>
+                //             </div>
+                //         </td>'
+                // ],
+                'field' => ['customerid','fullname','address','status_customer','mobile_phone','status'],
                 'data' => $this->model->asArray()->findAll(),
                 'confirmDelete' => 'customer'
             ],

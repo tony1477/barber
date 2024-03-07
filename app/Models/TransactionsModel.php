@@ -87,11 +87,32 @@ class TransactionsModel extends Model
     public function getHistorical()
     {
         return $this->db->table('trans_barber a')
-            ->select('b.fullname as customername, group_concat(c.fullname) as barber, ifnull(c.photo,"team-2.jpg") as pic, formatRp(ifnull(sum(total_price),0)) as price, count(a.customerid) as visit')
+            ->select('b.fullname as customername, group_concat(distinct c.fullname) as barber, ifnull(c.photo,"team-2.jpg") as pic, formatRp(ifnull(sum(total_price),0)) as price, count(a.customerid) as visit')
             ->join('customers b','b.customerid = a.customerid','left')
             ->join('employees c','c.employeeid = a.barberid','left')
             ->groupBy('a.customerid')
             // ->where('transdate',$yesterday->format('Y-m-d'))
             ->get()->getResultArray();
+    }
+    
+    public function getHeaderData(int $id)
+    {
+        return $this->db->table('trans_barber a')
+            ->select('a.*, 
+                (select fullname from customers c where c.customerid = a.customerid) as customername,
+                (select ifnull(photo,"default.png") from customers c where c.customerid = a.customerid) as custpic,
+                (select fullname from employees e where e.employeeid = a.barberid) as barbername')
+            ->where('transid',$id)
+            ->get()->getRowArray();
+    }
+
+    public function saveDetail(array $data)
+    {
+        return $this->db->table('trans_barber_detail')->insert($data,false);
+    }
+
+    public function postBarber(int $id)
+    {
+        return $this->db->query('call postTrans(:id:)',['id'=>$id]);
     }
 }
